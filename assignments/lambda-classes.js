@@ -22,8 +22,11 @@ class Instructor extends Person {
     demo(subject) {
         return `Today we are learning about ${subject}`
     }
-    grade(student, subject) {
-        return `${student.name} receives a perfect score on ${subject}`
+    grade(student, score, subject) {
+        
+        student.grade = score;
+
+        return `${student.name} receives a ${score} on ${subject}`
     }
 }
 
@@ -33,6 +36,7 @@ class Student extends Person {
         this.previousBackground = attr.previousBackground;
         this.className = attr.className;
         this.favSubjects = attr.favSubjects;
+        this.grade = 0;
 
     }
     listsSubjects() {
@@ -43,6 +47,13 @@ class Student extends Person {
     }
     sprintChallange(subject) {
         return `${this.name} has begun sprint challange on ${subject}`
+    }
+    graduate() {
+        if(this.grade >= 70){
+            return `${this.name} can graduate since their score is grater than 70%.`
+        } else {
+            return `${this.name} has to get their grade higher.`
+        }
     }
 
 }
@@ -99,8 +110,12 @@ const jeff = new TL({
   console.log(fred.catchPhrase);
   console.log(adrian.PRAssignment("Javascript-III"));
   console.log(adrian.sprintChallange("Advance-CSS"));
-
-  console.log(jeff.grade(adrian,"JavaScript-I"));
+    //Grade a project for student.
+  console.log(adrian.grade);
+  console.log(adrian.graduate());
+  console.log(jeff.grade(adrian, 100,"JavaScript-I"));
+  console.log(adrian.grade);
+  console.log(adrian.graduate());
   console.log(jeff.standUp("webpt11-jeff"));
 
-  
+  console.log(adrian);
